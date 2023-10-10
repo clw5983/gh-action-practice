@@ -1,4 +1,4 @@
-name: Workflow 2
+name: Handle Issues
 run-name: Output Event Details on "issues" by ${{ github.actor }}
 on: issues
 jobs:
