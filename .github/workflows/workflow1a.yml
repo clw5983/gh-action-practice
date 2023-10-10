@@ -1,4 +1,4 @@
-name: Workflow 1
+name: Workflow 1a
 run-name: Lint, Test & Deploy on "push" by ${{ github.actor }}
 on: push
 jobs:
