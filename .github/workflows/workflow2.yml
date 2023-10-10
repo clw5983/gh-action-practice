@@ -1,5 +1,6 @@
 name: Handle Issues
 run-name: Output Event Details on "issues" by ${{ github.actor }}
+# the workflow will be triggered whenever anything related to issue happens on the repo
 on: issues
 jobs:
   Output-Info:
