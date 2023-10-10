@@ -1,6 +1,6 @@
 name: Events Demo 1
 on: 
-  push_request:
+  pull_request:
     # types: [opened, edited]
     types:
       - opened
