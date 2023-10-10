@@ -1,5 +1,5 @@
 name: Deploy Project
-on: push
+on: [push, workflow_dispatch]
 # this workflow has 2 jobs that are running in //
 jobs:
   test: 
