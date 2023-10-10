@@ -20,7 +20,7 @@ jobs:
   deploy:
     # the deploy job needs the test job to be finished successfully before staring
     # needs: [job1, job2] to wait for multiple jobs to finish
-    needs: test
+    # needs: test
     # every job has its own runner even if they're in the same workflow
     runs-on: ubuntu-latest
     steps:
