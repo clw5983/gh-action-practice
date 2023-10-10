@@ -4,7 +4,22 @@ on:
     # types: [opened, edited]
     types:
       - opened
-  workflow_dispatch:   
+    branches:
+      # only pushes to the following branches would trigger this workflow
+      - main # it only covers "main"
+      - 'dev-*' # e.g. dev-new, dev-this-is-new
+      - 'feat/**' # e.g. feat/new-feat/new/button
+  workflow_dispatch:
+  push:
+    branches:
+      # only pushes to the following branches would trigger this workflow
+      - main # it only covers "main"
+      - 'dev-*' # e.g. dev-new, dev-this-is-new
+      - 'feat/**' # e.g. feat/new-feat/new/button
+    # whem we push to the 3 branches, this workflow will be run
+    # if we did not change a file in this .github/workflow folder
+    paths-ignore:
+      - '.github/workflow/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
