@@ -18,6 +18,8 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publish.outputs.something }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -25,6 +27,18 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: Publish JS filename # such that other jobs can use
+        # id of that step for referencing the output above
+        id: publish
+        # something is the name of this step's ouptut
+        # on the RHS of the '=' sign, you have the value that should be accessible under that output name
+        # it is the {} placeholder here (but it can be anything like some text)
+        # >> targets a special file created by GitHub in the environment 
+        # in which your job runs where the output key-value pair is written to
+        run: find dist/assets/*.js -type f -execdir echo 'something={}' >> $GITHUB_OUTPUT ';'
+        # alternative syntax (instead of setting the output as a key-value pair)
+        # may not be supported in the future anymore:
+        # run: find dist/assets/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
       # these file produced and uploaded in this job
       # will not automatically exist in the deploy job
       - name: Upload artifacts
