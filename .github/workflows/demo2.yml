@@ -69,6 +69,6 @@ jobs:
         # 'needs' object contains the output of all jobs that are defined as a dependency of the current job
         # can also get data about jobs using the jobs context object but 'needs' object is better for outputs
         # outputs is a field defined by GitHub Actions, which exists on all the jobs that are specified as needs
-        run: echo "$ {{ needs.build.outputs.script-file }}"
+        run: echo "${{ needs.build.outputs.script-file }}"
       - name: Deploy
         run: echo "Deploying..."
