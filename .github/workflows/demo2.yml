@@ -9,6 +9,19 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: action/cache@v3
+        with:
+          # specifiy the path or multiple paths that point at the files and folders that should be cached
+          # this is the path used by the npm tool for its internal dependency cache
+          path: ~/.npm
+          # This cache key will be useful for retrieving the cache in the future
+          # and recreating that folder on the runner machine based on that cache managed by GitHub in the future.
+          # But it also indicates that whether the cache should be discarded and recreated due to some dependency change.
+          # If the package-lock.json has dependency update, there will be a different hash key 
+          # indicating to GitHub Actions and this cache action that the currently stored cache should be discarded.
+          # Instead, the cache will be discarded and the dependencies will be reinstalled
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
       - name: Lint code
@@ -23,6 +36,19 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: action/cache@v3
+        with:
+          # specifiy the path or multiple paths that point at the files and folders that should be cached
+          # this is the path used by the npm tool for its internal dependency cache
+          path: ~/.npm
+          # This cache key will be useful for retrieving the cache in the future
+          # and recreating that folder on the runner machine based on that cache managed by GitHub in the future.
+          # But it also indicates that whether the cache should be discarded and recreated due to some dependency change.
+          # If the package-lock.json has dependency update, there will be a different hash key 
+          # indicating to GitHub Actions and this cache action that the currently stored cache should be discarded.
+          # Instead, the cache will be discarded and the dependencies will be reinstalled
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
       - name: Build website
