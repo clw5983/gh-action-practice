@@ -8,9 +8,9 @@ jobs:
   test: 
     # job-lv env var
     env:
-      # MONGO_CLUSTER_ADDRESS: x.x.x.x
-      MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}
-      # MONGO_PASSWORD: abc123
+      # MONGODB_CLUSTER_ADDRESS: x.x.x.x
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+      # MONGODB_PASSWORD: abc123
     runs-on: ubuntu-latest
     steps:
       - name: Echo environment variable 1
