@@ -63,5 +63,12 @@ jobs:
           name: dist-files
       - name: Output contents
         run: ls # we can see the contents of the dist folder available in that folder in which the deploy job runs
+      - name: Output filename
+        # get data from the build job
+        # pre-requisite: need to define the value for the "needs" key
+        # 'needs' object contains the output of all jobs that are defined as a dependency of the current job
+        # can also get data about jobs using the jobs context object but 'needs' object is better for outputs
+        # outputs is a field defined by GitHub Actions, which exists on all the jobs that are specified as needs
+        run: echo "$ {{ needs.build.outputs.script-file }}"
       - name: Deploy
         run: echo "Deploying..."
