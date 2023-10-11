@@ -5,7 +5,8 @@ env:
   MONGODB_DB_NAME: gha-demo
 # this workflow has 2 jobs that are running in //
 jobs:
-  test: 
+  test:
+    environment: testing
     # job-lv env var
     env:
       # MONGODB_CLUSTER_ADDRESS: x.x.x.x
