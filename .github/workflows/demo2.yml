@@ -10,7 +10,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Cache dependencies
-        uses: action/cache@v3
+        uses: actions/cache@v3
         with:
           # specifiy the path or multiple paths that point at the files and folders that should be cached
           # this is the path used by the npm tool for its internal dependency cache
@@ -37,7 +37,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Cache dependencies
-        uses: action/cache@v3
+        uses: actions/cache@v3
         with:
           # specifiy the path or multiple paths that point at the files and folders that should be cached
           # this is the path used by the npm tool for its internal dependency cache
