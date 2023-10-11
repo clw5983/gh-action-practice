@@ -7,14 +7,16 @@ env:
 jobs:
   test: 
     # job-lv env var
-    # env:
+    env:
       # MONGO_CLUSTER_ADDRESS: x.x.x.x
-      # MONGO_USERNAME: abc123
+      MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}
       # MONGO_PASSWORD: abc123
     runs-on: ubuntu-latest
     steps:
-      - name: Test environment variable
+      - name: Echo environment variable 1
         run: echo "$MONGODB_DB_NAME"
+      - name: Echo environment variable 2
+        run: echo "$MONGODB_USERNAME"
       - name: Get code
         uses: actions/checkout@v3 # use the "uses" keyword to use an action
         # "with" keyword provides configuration to the actions
