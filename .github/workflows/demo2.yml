@@ -23,6 +23,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Install dependencies
         run: npm ci
+      - name: Build website
+        run: npm run build
       # these file produced and uploaded in this job
       # will not automatically exist in the deploy job
       - name: Upload artifacts
