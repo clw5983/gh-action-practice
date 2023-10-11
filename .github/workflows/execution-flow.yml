@@ -36,7 +36,9 @@ jobs:
         id: run-tests # for the reference of next step's if statement
         run: npm run test
       - name: Upload test report
-        if: steps.run-tests.outcome == 'failure'
+        # add 'failure()' to prevent GitHub Actions ignoring this step
+        # because it still has its default behavior of not executing any other steps after this failing step
+        if: failure() && steps.run-tests.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: test-report
