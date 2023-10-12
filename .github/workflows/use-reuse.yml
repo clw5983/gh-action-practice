@@ -90,6 +90,8 @@ jobs:
     #     run: echo "Deploying..."
     with:
       artifact-name: dist-files
+    # secrets:
+      # some-secret: ${{ secrets.some-secret }}
   report:
       # as the "report" job is running // by default, 
       # the "needs" is required for evaluation of condition
