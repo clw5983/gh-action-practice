@@ -13,9 +13,14 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: ~/.npm
+          # path: ~/.npm
+          path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      # If the node_modules folder is cached, it's not necessary to run "npm ci"
+      # Skipping this steps will skip all the setup work realted to that step
+      # and skip the part where npm internally checks whether it has its cache folder 
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Lint code
         run: npm run lint
@@ -53,9 +58,14 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: ~/.npm
+          # path: ~/.npm
+          path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      # If the node_modules folder is cached, it's not necessary to run "npm ci"
+      # Skipping this steps will skip all the setup work realted to that step
+      # and skip the part where npm internally checks whether it has its cache folder 
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build website
         id: build-website
