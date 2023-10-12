@@ -88,6 +88,8 @@ jobs:
     #     run: ls
     #   - name: Deploy
     #     run: echo "Deploying..."
+    with:
+      artifact-name: dist-files
   report:
       # as the "report" job is running // by default, 
       # the "needs" is required for evaluation of condition
