@@ -12,6 +12,15 @@ jobs:
         # Tell GitHub Actions to run this built job multiple times, once per value, in that operating system array.
         # Those jobs will be run in // by default
         operating-system: [ubuntu-latest, windows-latest]
+        # "include" allows you to add a list with dashes of key values that should be included without adding a bunch of new combinations
+        # it avoids the unwanted combination of windows-latest and node 18
+        include:
+          - node-version: 18
+            operating-system: ubuntun-latest
+            npm: 6 # you can even add brand-new keys that weren't even specified up here
+        exclude:
+          - node-version: 12
+            operating-system: windows-latest
     runs-on: ${{ martix.operating-system }}
     steps:
       - name: Get Code
