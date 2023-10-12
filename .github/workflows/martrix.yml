@@ -2,6 +2,10 @@ name: Matrix Demo
 on: push
 jobs:
   build:
+    # If one matrix job fails, the other jobs are canceled and skipped.
+    # Set continue-on-error to true will tell GitHub Actions 
+    # to continue executing jobs that are related to this matrix even if some jobs for some combinations failed.
+    continue-on-error: true
     strategy:
       matrix: 
         node-version: [12, 14, 16]
