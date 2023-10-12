@@ -1,0 +1,9 @@
+name: Reusable Deploy
+# The "on" trigger's "workflow_call" event help make the reusable workflow callable by others
+on: workflow_call
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output information
+        run: echo "Deploying & uploading..."
