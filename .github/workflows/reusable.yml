@@ -10,11 +10,19 @@ on:
         required: false
         default: dist
         type: string
+    outputs:
+      result:
+        description: The result of the deployment operation
+        # The value of course is typically taken from the steps in one of your jobs
+        value: ${{ jobs.deploy.outputs.outcome }}
     # secrets:
       # some-secret:
         # required: true
 jobs:
   deploy:
+    # outputs that belong to the "deploy" job
+    outputs:
+      outcome: ${{ steps.set-result.outputs.step-reuslt }}
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -25,3 +33,7 @@ jobs:
         run: ls
       - name: Output information
         run: echo "Deploying & uploading..."
+      - name: Set result output
+        id: set-result
+        # run: echo "::set-output" name=step-result::success" # depreciated
+        run: echo "step-result=success" >> $GITHUB_OUTPUT
