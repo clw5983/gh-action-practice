@@ -1,0 +1,21 @@
+name: Public Cloud Scanning
+on:
+  push:
+    branches:
+      - main
+jobs:
+  upload-cache-to-hagithub:
+    runs-on: windows-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Load & cache dependencies
+        uses: ./.github/actions/cached-deps
+  oss-scanning:
+    runs-on: windows-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Load & cache dependencies
+        uses: ./.github/actions/cached-deps
+      # - name: Start OSS scanning
