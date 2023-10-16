@@ -20,7 +20,7 @@ runs:
         path: node_modules
         key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
         restore-keys: deps-node-modules-
-        # enableCrossOSArchive: true
+        enableCrossOSArchive: true
     - name: Install dependencies
       id: install
       # if cache is missed || we don't want to use caching, then this step should also execute
