@@ -4,6 +4,7 @@ on:
     branches:
       - main
 jobs:
+  # for runner 1
   upload-cache-to-hagithub:
     runs-on: windows-latest
     steps:
@@ -11,7 +12,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Load & cache dependencies
         uses: ./.github/actions/cached-deps
+  # for runner 2
   oss-scanning:
+    needs: upload-cache-to-hagithub
     runs-on: windows-latest
     steps:
       - name: Get code
