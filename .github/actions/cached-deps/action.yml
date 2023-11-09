@@ -1,4 +1,11 @@
+# name of action
 name: "Get & Cache Dependencies"
+
+# no `on` key for custom actions because actions are not workflows
+# and do not need a trigger
+# Instead, they are used as part of workflows
+
+# This description will be shown in the marketplace where we publish our action
 description: "Get the dependencies (via npm) and cache them."
 # inputs:
 #   caching:
@@ -9,12 +16,14 @@ description: "Get the dependencies (via npm) and cache them."
 #   used-cache:
 #     description: 'Whether the cache was used.'
 #     value: ${{ steps.install.outputs.cache }}
+
 runs:
-  using: "composite"
+  using: "composite" # it must be set to "composite" and no other choices
   steps:
     - name: Cache dependencies
       # if: inputs.caching == 'true'
       id: cache
+      # other actions can be used in your own action
       uses: actions/cache@v3
       with:
         path: node_modules
@@ -30,4 +39,6 @@ runs:
       #   echo "cache='${{ inputs.caching }}'" >> $GITHUB_OUTPUT
       if: steps.cache.outputs.cache-hit != 'true'
       run: npm ci
-      shell: bash
+      # shell is a speical key that must be added if you're using the run key
+      # it specifies which shell should be used for executing the step
+      shell: bash 
