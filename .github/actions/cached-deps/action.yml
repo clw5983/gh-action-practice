@@ -5,7 +5,7 @@ name: "Get & Cache Dependencies"
 # and do not need a trigger
 # Instead, they are used as part of workflows
 
-# This description will be shown in the marketplace where we publish our action
+# This description of our action will be shown in the marketplace if we publish our action
 description: "Get the dependencies (via npm) and cache them."
 # inputs:
 #   caching:
